@@ -30,32 +30,31 @@ check_first_node:
 point_first_to_next:
 
 	mov r12, rdi
-	
+
 	mov rbx, [rdi]
-	cmp [rbx + 8], 0
+	cmp byte [rbx + 8], 0
 	je .remove_and_return
 	mov rdi, [rbx + 8]
 
 	mov r12, rdi
 
 .remove_and_return:
-	mov rdi, [rdi]
-	call rsi
+	mov rdi, rbx
+	call rcx
 	mov rdi, r12
 	ret
 
-
 ft_list_remove_if:
-	cmp [rdi], 0
+	cmp byte [rdi], 0
 	je .end
 	call check_first_node
 	test rax, rax
-	jz
-
+	jz .remove_first
+	; jmp .remove_other
 
 .remove_first:
-
-.remove_other:
+	call point_first_to_next
+; .remove_other:
 
 .end:
 	ret
