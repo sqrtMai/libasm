@@ -8,17 +8,15 @@ ft_list_push_front:
 	push rsi
 
 	mov rdi, 16
-
 	call malloc
+	pop rsi
+	pop rdi
 	test rax, rax
 	jz .end
 
-	pop rsi
-	pop rdi
-
+	mov [rax], rsi ; ajouter data
 	mov rdx, [rdi]
 	mov [rax + 8], rdx
-	mov [rax], rsi
 	mov [rdi], rax
 
 .end:
