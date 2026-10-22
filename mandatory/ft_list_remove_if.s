@@ -1,4 +1,4 @@
-section .text
+hjhhjhjhsection .text
 	global ft_list_remove_if
 
 
